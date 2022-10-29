@@ -10,7 +10,7 @@ class Person(MPTTModel):
     patronymic = models.CharField(max_length=40)
     job = models.CharField(max_length=50)
     accepted = models.DateField()
-    salary = models.IntegerField(validators=MinValueValidator(0))
+    salary = models.IntegerField(validators=[MinValueValidator(0)])
     photo = models.ImageField(blank=True, upload_to='media/', verbose_name='Employee photo')
     chief = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
 
