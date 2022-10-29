@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tree.apps.TreeConfig',
     'mptt',
+    'django_seed',
 
 ]
 

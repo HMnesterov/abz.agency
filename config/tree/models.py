@@ -1,4 +1,4 @@
-from django.core.validators import MinValueValidator
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from mptt.models import MPTTModel, TreeForeignKey
 
@@ -10,12 +10,19 @@ class Person(MPTTModel):
     patronymic = models.CharField(max_length=40)
     job = models.CharField(max_length=50)
     accepted = models.DateField()
-    salary = models.IntegerField(validators=[MinValueValidator(0)])
+    salary = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(1)])
     photo = models.ImageField(blank=True, upload_to='media/', verbose_name='Employee photo')
-    chief = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
+    parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        max_indent = 5
+        lvl = self.parent.level
+        if lvl <= max_indent:
+            super().save(*args, **kwargs)
+
 
     class MPTTMeta:
         order_insertion_by = ['name']
 
     def __str__(self):
-        return self.name, self.job
+        return f"{self.name, self.job}"
