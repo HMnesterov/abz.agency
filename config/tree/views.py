@@ -1,14 +1,14 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Person
-from .forms import PersonForm
+
+
 
 def index(request):
-    form = PersonForm()
-    if request.method == "POST":
-        form = PersonForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return HttpResponse('Норм')
-    return render(request, "base.html", {'form': form})
+    filtered = Person.objects.all().order_by('level')
+    return render(request, 'base.html', {'objects': filtered})
+
+def current_person(request, pk):
+    object = get_object_or_404(Person, pk=pk)
+    return render(request, 'current.html', {'person': object})
 
