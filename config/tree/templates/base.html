@@ -11,15 +11,21 @@
 </head>
 <body>
 
-{% for obj in objects %}
+{% for obj in page_obj %}
 <p>{{obj.name}}</br>
     <a href="{{obj.get_link}}">
         Подробная информация</a>
 </p></br>
-<a href="{{obj.parent.get_link}}">Начальник</a>
+
 
 {% endfor %}
 
+
+    {% for p in page_obj.paginator.page_range %}
+
+    <a href="?page={{ p }}">{{ p }}</a>
+
+    {% endfor %}
 
 </body>
 </html>

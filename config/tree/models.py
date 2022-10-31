@@ -18,10 +18,11 @@ class Person(MPTTModel):
 
     def save(self, *args, **kwargs):
         if self.level > 5:
-            nach = self.parent.level
-
-            self.level = nach - 1 if nach > 1 else 1
-            pass
+            try:
+               nach = self.parent.level
+               self.level = nach - 1 if nach > 1 else 1
+            except Exception:
+                self.level = 5
         super().save(*args, **kwargs)
 
     def get_link(self):
