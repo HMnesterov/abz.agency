@@ -1,31 +1,24 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <title>{% block title %}{% endblock %}</title>
+
+      <link href="{% static 'base.css' %}" rel="stylesheet">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 <body>
-
-{% for obj in page_obj %}
-<p>{{obj.name}}</br>
-    <a href="{{obj.get_link}}">
-        Подробная информация</a>
-</p></br>
+{% block content_1 %}
+{% endblock %}
 
 
-{% endfor %}
+{% block content_2 %}
+{% endblock %}
 
+{% block content_3 %}
+{% endblock %}
 
-    {% for p in page_obj.paginator.page_range %}
-
-    <a href="?page={{ p }}">{{ p }}</a>
-
-    {% endfor %}
 
 </body>
 </html>

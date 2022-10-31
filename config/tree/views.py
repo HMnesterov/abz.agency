@@ -12,7 +12,7 @@ def index(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    return render(request, 'base.html', {'page_obj': page_obj})
+    return render(request, 'main_page.html', {'page_obj': page_obj})
 
 def current_person(request, pk):
     object = get_object_or_404(Person, pk=pk)

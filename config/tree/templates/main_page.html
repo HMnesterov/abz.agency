@@ -1,10 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+
+
+{% block title %}
+
+It`s our employee catalog ! :<3)
+{% endblock %}
+{% block content_1 %}
+
+<div class="container">
+{% for obj in page_obj %}
+
+<div class="card" style="width: 18rem;">
+  <img src="/media/{{obj.photo}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{obj.name}}</h5>
+
+  </div>
+
+  <div class="card-body">
+    <a href="{{obj.get_link}}" class="card-link">Employee profile</a>
+
+  </div>
+</div>
+
+
+{% endfor %}
+
+</div>
+{% include 'navbar.html' %}
+{% endblock %}
+
+
+
+
