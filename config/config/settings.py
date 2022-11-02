@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'tree.apps.TreeConfig',
     'mptt',
     'django_seed',
+    'el_pagination',
 
 ]
 
@@ -64,6 +65,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
             ],
         },
     },
